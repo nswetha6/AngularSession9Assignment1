@@ -1,0 +1,80 @@
+
+
+<!-- 1. Create a form with 3 input & 1 dropdown fields and a button.
+2. The dropdown filed values should display on initialization using services.
+3. The input and the dropdown fields should use Two-Way Binding. Create a model
+for the fields and initialize them on ngOnInit().
+4. Create a service for sending and retrieving the data.
+5. Create a function which will bind with the (ngSubmit). Once you click on that
+button, it should send the data in the parameter and it should display the data in
+View. -->
+
+<div class="container">
+  <form #f1="ngForm" (ngSubmit)="addform(f1.value)">
+    <div class="panel panel-primary">
+      <div class="panel-heading "><h4>Session-9 Assignment - Forms</h4></div>
+    </div>
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" class="form-control" id="firstname"
+              [(ngModel)]="student.firstname" name="firstname"  #fnn>
+    </div>
+    <div class="form-group">
+      <label for="middlename">Middle Name</label>
+      <input type="text" class="form-control" id="middlename"
+      [(ngModel)]="student.middlename" name="middlename">
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text" class="form-control" id="lastname"
+      [(ngModel)]="student.lastname" name="lastname">
+    </div>
+
+    <!-- <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date"
+                ngModel name="Date">
+      </div> -->
+
+    <div class="form-group">
+      <label for="department">Department</label>
+      <select id="department" class="form-control" [(ngModel)]="student.depname" name="depname">
+        <option *ngFor ="let d of dlist" [ngValue]="d" >
+           {{d}}
+        </option>
+        <!-- <option value="1">CSE</option>
+        <option value="2">ECE</option> -->
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary"  >Submit</button>
+    </div>
+  </form>
+
+  
+  <br>
+  <div>{{f1.value |json}}</div>
+  <!-- <div>{{fnn.value | uppercase}}</div> -->
+  <br>
+<!-- <div>{{slistarray.length}}</div> -->
+  <div class="container" *ngIf= "submitted" >
+    <table  class="table table-bordered table-responsive table-striped" >
+      <thead class="panel panel-primary">
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Department</th>
+      </thead>
+       <tr *ngFor="let s of slistarray">
+       
+      <td>{{s.firstname}}</td>
+      <td>{{s.middlename}}</td>
+      <td>{{s.lastname}}</td>
+      <td>{{s.depname}}</td>
+    </tr>
+    </table>
+      </div>
+
+  
+</div>
+
